@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malla Curricular - Pedagogía (UPN)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #006699;
+    }
+    .semester {
+      background: white;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-left: 8px solid #006699;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .semester h2 {
+      margin-top: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #004466;
+    }
+    .courses {
+      margin-top: 0.5rem;
+      padding-left: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+    .toggle::after {
+      content: '\25BC';
+      font-size: 0.8em;
+      margin-left: 0.5rem;
+    }
+    .collapsed::after {
+      content: '\25B6';
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Curricular Interactiva - Licenciatura en Pedagogía (UPN)</h1>  <div id="malla"></div>  <script>
+    const data = {
+      "Semestre 1": [
+        "El Estado Mexicano y los Proyectos Educativos (1857-1920)",
+        "Filosofía de la Educación",
+        "Introducción a la Psicología",
+        "Introducción a la Pedagogía",
+        "Ciencia y Sociedad"
+      ],
+      "Semestre 2": [
+        "Institucionalización, Desarrollo Económico y Educación (1920-1968)",
+        "Historia de la Educación en México",
+        "Desarrollo, Aprendizaje y Educación",
+        "Teoría Pedagógica; Génesis y Desarrollo",
+        "Introducción a la Investigación Educativa"
+      ],
+      "Semestre 3": [
+        "Crisis y Educación en el México Actual (1968-1990)",
+        "Aspectos Sociales de la Educación",
+        "Psicología social: Grupos y Aprendizaje",
+        "Teoría Pedagogía Contemporánea",
+        "Estadística descriptiva en Educación"
+      ],
+      "Semestre 4": [
+        "Planeación y Evaluación Educativa",
+        "Educación y Sociedad en América Latina",
+        "Comunicación y Procesos Educativos",
+        "Didáctica General",
+        "Seminario de Técnicas y Estadísticas Aplicadas a la Investigación Educativa"
+      ],
+      "Semestre 5": [
+        "Organización y Gestión de Instituciones Educativas",
+        "Bases de la Orientación Educativa",
+        "Comunicación, Cultura y Educación",
+        "Teoría Curricular",
+        "Investigación Educativa 1"
+      ],
+      "Semestre 6": [
+        "Epistemología y Pedagogía",
+        "La Orientación Educativa: Sus Prácticas",
+        "Programación y Evaluación Didácticas",
+        "Desarrollo y Evaluación Curricular",
+        "Investigación Educativa Il"
+      ],
+      "Semestre 7": [
+        "Seminario- Taller de Concentración I",
+        "Curso o Seminario Optativo 7-1",
+        "Curso o Seminario Optativo 7-11",
+        "Curso o Seminario Optativo 7-111",
+        "Seminario de Tesis I"
+      ],
+      "Semestre 8": [
+        "Seminario- Taller de Concentración II",
+        "Curso o Seminario Optativo 8-1",
+        "Curso o Seminario Optativo 8-11",
+        "Curso o Seminario Optativo 8-111",
+        "Seminario de Tesis II"
+      ]
+    };
+
+    const mallaContainer = document.getElementById('malla');
+
+    Object.entries(data).forEach(([semestre, materias]) => {
+      const section = document.createElement('div');
+      section.className = 'semester';
+
+      const header = document.createElement('h2');
+      header.className = 'toggle';
+      header.textContent = semestre;
+
+      const list = document.createElement('ul');
+      list.className = 'courses';
+      materias.forEach(materia => {
+        const li = document.createElement('li');
+        li.textContent = materia;
+        list.appendChild(li);
+      });
+
+      header.addEventListener('click', () => {
+        list.classList.toggle('hidden');
+        header.classList.toggle('collapsed');
+      });
+
+      section.appendChild(header);
+      section.appendChild(list);
+      mallaContainer.appendChild(section);
+    });
+  </script></body>
+</html>
